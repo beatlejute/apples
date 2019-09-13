@@ -144,12 +144,12 @@ class Apple extends ActiveRecord {
     /**
      * Получить яблоко по ИД
      *
-     * @param integer $id ИД яблока
+     * @param int $id ИД яблока
      * @return array|ActiveRecord|null
      */
     public static function get($id) {
 
-        $apple = self::find()->where(["id" => $id])->one();
+        $apple = self::find()->where(["id" => (int)$id])->one();
 
         if ($apple && $apple->{self::FIELD_DATE_FALL} + self::FRESH_TIME <= time() && $apple->isFallen()) {
             $apple->rotten();
